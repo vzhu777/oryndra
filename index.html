@@ -28,11 +28,18 @@
   flex: 1;
 }
 .logo-img {
-  height: 40px;
+  height: 64px;
   width: auto;
   object-fit: contain;
   display: block;
   transition: opacity 0.3s ease;
+}
+  /* Adjust on smaller screens */
+@media (max-width: 900px) {
+  .logo-img { height: 52px; }
+}
+@media (max-width: 640px) {
+  .logo-img { height: 44px; }
 }
 .logo-img.dark-mode {
   display: none;
@@ -78,6 +85,60 @@
       .grid-3,.grid-2{grid-template-columns:1fr}
       .logo-img{height:28px}
     }
+/* ---- Contact Form Styling ---- */
+form#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+form#contactForm label {
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+form#contactForm input,
+form#contactForm textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  background-color: #fff;
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+form#contactForm input:focus,
+form#contactForm textarea:focus {
+  border-color: var(--brand);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* Name + Email side by side with line separator */
+form#contactForm .inline-fields {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+
+form#contactForm .inline-fields > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Adjust message box height */
+form#contactForm textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+    
   </style>
 </head>
 
@@ -166,12 +227,29 @@
       <div class="container grid-2">
         <div class="panel">
           <h3>Let’s start a conversation</h3>
-          <form id="contactForm" name="contact" method="POST" action="https://formspree.io/f/xovkgbkk">
-            <label for="name">Name   </label><input id="name" name="name" required placeholder="Your name">
-            <label for="email">Email</label><input id="email" name="email" type="email" required placeholder="you@company.com">
-            <label for="msg">Message</label><textarea id="msg" name="message" placeholder="What challenge can we help with?"></textarea>
-            <div style="display:flex;gap:12px;align-items:center;margin-top:14px"><button class="btn primary" type="submit">Send enquiry</button><a class="btn" href="mailto:victor@oryndraconsulting.com">Or email: victor@oryndraconsulting.com</a><span id="formStatus" style="display:none;color:var(--muted);font-weight:700">Thanks! We’ll be in touch.</span></div>
-          </form>
+       <form id="contactForm" name="contact" method="POST" action="https://formspree.io/f/xovkgbkk">
+  <div class="inline-fields">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" required placeholder="Your name">
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required placeholder="you@company.com">
+    </div>
+  </div>
+  
+  <div>
+    <label for="msg">Message</label>
+    <textarea id="msg" name="message" placeholder="What challenge can we help with?"></textarea>
+  </div>
+
+  <div style="display:flex;gap:12px;align-items:center;margin-top:14px">
+    <button class="btn primary" type="submit">Send enquiry</button>
+    <a class="btn" href="mailto:victor@oryndraconsulting.com">Or email: victor@oryndraconsulting.com</a>
+    <span id="formStatus" style="display:none;color:var(--muted);font-weight:700">Thanks! We’ll be in touch.</span>
+  </div>
+</form>
         </div>
         <div class="panel">
           <h3>Details</h3>
